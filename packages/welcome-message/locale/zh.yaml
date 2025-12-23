@@ -1,0 +1,55 @@
+welcome_title: "欢迎加入{siteName}！"
+welcome_content_text: |
+  欢迎 {username}！
+  
+  很高兴你在 {siteName} 注册了账号！
+  
+  账号信息：
+  • 用户ID：{userId}
+  • 注册时间：{registerTime}
+  
+  接下来可以：
+  1. 前往题库（/problem）解决第一道题目
+  2. 查看训练计划（/training）系统学习
+  3. 参加比赛（/contest）锻炼实战能力
+  4. 在讨论区（/discussion）与其他同学交流
+  
+  小贴士：
+  每天坚持解决一道题，编程能力会有显著提升！
+  
+  如果在使用过程中遇到任何问题，可以在讨论区提问或联系管理员。
+  
+  —— {siteName} 团队
+welcome_content_html: |
+  <div style="font-family: 'Microsoft YaHei', sans-serif; line-height: 1.6;">
+      <h2 style="color: #3498db;">欢迎 {username}！</h2>
+      
+      <p>很高兴你在 <strong>{siteName}</strong> 注册了账号！</p>
+      
+      <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0;">
+          <h3 style="color: #2c3e50; margin-top: 0;">账号信息</h3>
+          <ul>
+              <li>用户ID：<code>{userId}</code></li>
+              <li>注册时间：{registerTime}</li>
+          </ul>
+      </div>
+    
+      <h3>接下来可以：</h3>
+      <ol>
+          <li>前往 <a href="/problem">题库</a> 解决第一道题目</li>
+          <li>查看 <a href="/training">训练计划</a> 系统学习</li>
+          <li>参加 <a href="/contest">比赛</a> 锻炼实战能力</li>
+          <li>在 <a href="/discussion">讨论区</a> 与其他同学交流</li>
+      </ol>
+      
+      <div style="border-left: 4px solid #27ae60; padding-left: 15px; margin: 20px 0;">
+          <p><strong>小贴士：</strong></p>
+          <p>每天坚持解决一道题，编程能力会有显著提升！</p>
+      </div>
+      
+      <p>如果在使用过程中遇到任何问题，可以在讨论区提问或联系管理员。</p>
+      
+      <p style="margin-top: 30px; text-align: right;">
+          <em>—— {siteName} 团队</em>
+      </p>
+  </div>

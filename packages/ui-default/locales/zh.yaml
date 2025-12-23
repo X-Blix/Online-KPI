@@ -554,6 +554,7 @@ Logout: 登出
 Lost Password: 忘记密码
 Lucky: 试试手气
 manage_config: 配置管理
+manage_welcome: 欢迎消息管理
 manage_dashboard: 控制面板
 manage_join_applications: 加域申请
 manage_module: 管理模块

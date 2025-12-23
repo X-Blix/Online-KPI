@@ -1,0 +1,49 @@
+welcome_title: "Welcome to {siteName}!"
+welcome_content_text: |
+  Welcome {username}!
+  
+  We're excited to have you join {siteName}!
+  
+  Account Info:
+  • User ID: {userId}
+  • Registration Time: {registerTime}
+  
+  What to do next:
+  1. Go to Problem Set (/problem) to solve your first problem
+  2. Check Training Plans (/training) for systematic learning
+  3. Join Contests (/contest) to improve skills
+  4. Participate in Discussions (/discussion) to exchange ideas
+  
+  Pro Tip:
+  Solving at least one problem every day will significantly improve your coding skills!
+  
+  If you encounter any issues, feel free to ask in the discussion area or contact administrators.
+  
+  —— {siteName} Team
+welcome_content_html: |
+  <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+    <h2 style="color: #3498db;">Welcome {username}!</h2>
+    <p>We're excited to have you join <strong>{siteName}</strong>!</p>
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0;">
+        <h3 style="color: #2c3e50; margin-top: 0;">Account Information</h3>
+        <ul>
+            <li>User ID: <code>{userId}</code></li>
+            <li>Registration Time: {registerTime}</li>
+        </ul>
+    </div>
+    <h3>What to do next:</h3>
+    <ol>
+        <li>Go to <a href="/problem">Problem Set</a> to solve your first problem</li>
+        <li>Check <a href="/training">Training Plans</a> for systematic learning</li>
+        <li>Join <a href="/contest">Contests</a> to improve skills</li>
+        <li>Participate in <a href="/discussion">Discussions</a> to exchange ideas</li>
+    </ol>
+    <div style="border-left: 4px solid #27ae60; padding-left: 15px; margin: 20px 0;">
+        <p><strong>Pro Tip:</strong></p>
+        <p>Solving at least one problem every day will significantly improve your coding skills!</p>
+    </div>
+    <p>If you encounter any issues, feel free to ask in the discussion area or contact administrators.</p>
+    <p style="margin-top: 30px; text-align: right;">
+        <em>—— {siteName} Team</em>
+    </p>
+  </div>

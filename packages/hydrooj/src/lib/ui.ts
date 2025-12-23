@@ -66,6 +66,7 @@ inject('ControlPanel', 'manage_user_import');
 inject('ControlPanel', 'manage_user_priv');
 inject('ControlPanel', 'manage_setting');
 inject('ControlPanel', 'manage_config');
+inject('ControlPanel', 'manage_welcome', {}, PRIV.PRIV_EDIT_SYSTEM);
 inject('DomainManage', 'domain_dashboard', { family: 'Properties', icon: 'info' });
 inject('DomainManage', 'domain_edit', { family: 'Properties', icon: 'info' });
 inject('DomainManage', 'domain_join_applications', { family: 'Properties', icon: 'info' });

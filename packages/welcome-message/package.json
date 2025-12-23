@@ -1,0 +1,25 @@
+{
+  "name": "@hydrooj/welcome-message",
+  "version": "1.0.0",
+  "description": "HydroOJ欢迎消息插件",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "keywords": ["hydrooj", "welcome", "message"],
+  "author": "XBlix",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.5",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "hydrooj": "^5.0.0"
+  }
+}

@@ -1,0 +1,170 @@
+{% extends "manage_base.html" %}
+
+{% block manage_content %}
+<div class="section">
+    <div class="section__header">
+        <h1 class="section__title">欢迎消息管理</h1>
+    </div>
+    <div class="section__body">
+        <!-- 统计卡片 -->
+        <div class="row">
+            <div class="medium-3 columns">
+                <div class="card">
+                    <div class="card__header">
+                        <h2><span class="icon icon-chart-area"></span> 总计</h2>
+                    </div>
+                    <div class="card__body">
+                        <div class="large statistic">
+                            <div class="statistic__value">{{ stats.total|default(0) }}</div>
+                            <div class="statistic__label">总发送</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="medium-3 columns">
+                <div class="card">
+                    <div class="card__header">
+                        <h2><span class="icon icon-check text-green"></span> 成功</h2>
+                    </div>
+                    <div class="card__body">
+                        <div class="large statistic">
+                            <div class="statistic__value">{{ stats.success|default(0) }}</div>
+                            <div class="statistic__label">成功发送</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="medium-3 columns">
+                <div class="card">
+                    <div class="card__header">
+                        <h2><span class="icon icon-close text-red"></span> 失败</h2>
+                    </div>
+                    <div class="card__body">
+                        <div class="large statistic">
+                            <div class="statistic__value">{{ stats.failed|default(0) }}</div>
+                            <div class="statistic__label">发送失败</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="medium-3 columns">
+                <div class="card">
+                    <div class="card__header">
+                        <h2><span class="icon icon-time"></span> 今日</h2>
+                    </div>
+                    <div class="card__body">
+                        <div class="large statistic">
+                            <div class="statistic__value">{{ stats.today|default(0) }}</div>
+                            <div class="statistic__label">今日发送</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 最近记录 -->
+        <div class="section__header">
+            <h2><span class="icon icon-history"></span> 最近发送记录</h2>
+        </div>
+        <div class="section__body">
+            {% if logs and logs.length %}
+            <table class="data-table">
+                <colgroup>
+                    <col class="col--time">
+                    <col class="col--user">
+                    <col class="col--status">
+                    <col class="col--message">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th class="col--time">发送时间</th>
+                        <th class="col--user">接收用户</th>
+                        <th class="col--status">状态</th>
+                        <th class="col--message">消息预览</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in logs %}
+                    <tr>
+                        <td class="col--time">
+                            {% if log.sentAt %}
+                            {% set year = log.sentAt.getFullYear() %}
+                            {% set month = log.sentAt.getMonth() + 1 %}
+                            {% set day = log.sentAt.getDate() %}
+                            {% set hours = log.sentAt.getHours() %}
+                            {% set minutes = log.sentAt.getMinutes() %}
+                            
+                            {% set monthStr = month %}
+                            {% if month < 10 %}{% set monthStr = '0' + month %}{% endif %}
+                            {% set dayStr = day %}
+                            {% if day < 10 %}{% set dayStr = '0' + day %}{% endif %}
+                            {% set hoursStr = hours %}
+                            {% if hours < 10 %}{% set hoursStr = '0' + hours %}{% endif %}
+                            {% set minutesStr = minutes %}
+                            {% if minutes < 10 %}{% set minutesStr = '0' + minutes %}{% endif %}
+                            
+                            <span title="{{ log.sentAt.toISOString() }}">
+                                {{ year }}-{{ monthStr }}-{{ dayStr }}
+                                {{ hoursStr }}:{{ minutesStr }}
+                            </span>
+                            {% else %}
+                            <span class="text-gray">未知时间</span>
+                            {% endif %}
+                        </td>
+                        
+                        <td class="col--user">
+                            <a href="{{ url('user_detail', uid=log.userId) }}">
+                                <span class="icon icon-account"></span> {{ log.username|default('未知用户') }}
+                            </a>
+                        </td>
+                        <td class="col--status">
+                            {% if log.status === 'success' %}
+                            <span class="text-green">
+                                <span class="icon icon-check"></span> 成功
+                            </span>
+                            {% elif log.status === 'pending' %}
+                            <span class="text-yellow">
+                                <span class="icon icon-time"></span> 等待中
+                            </span>
+                            {% else %}
+                            <span class="text-red">
+                                <span class="icon icon-close"></span> 失败
+                                {% if log.error %}
+                                <br><small class="text-gray">{{ log.error|truncate(30) }}</small>
+                                {% endif %}
+                            </span>
+                            {% endif %}
+                        </td>
+                        <td class="col--message">
+                            {% if log.message %}
+                            {{ log.message|truncate(50) }}
+                            {% else %}
+                            <span class="text-gray">无消息内容</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="typo">
+                <p class="text-center text-gray">暂无发送记录</p>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+
+    <div class="section__footer">
+        <div class="typo">
+            <p class="text-gray">
+                <span class="icon icon-info"></span>
+                说明：该页面只留存最近7天的注册用户欢迎消息记录，7天前的信息已自动删除。
+                <!-- 创建TTL索引：7天后自动删除  -- > 具体详见mongodb -->
+            </p>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
